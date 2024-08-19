@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import './index.css'
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
-import { useCounterStore } from "../store/counter";
-defineProps<{ msg: string }>();
+import { useCounterStore } from "../../store/counter";
+
+// defineProps<{ msg: string }>();
 
 const { count } = storeToRefs(useCounterStore());
 const filePath = ref(null);
