@@ -1,5 +1,65 @@
-.home-container{
+.home-container {
   height: 100%;
   width: 100%;
-  background: burlywood;
+  background-image: url(../../assets/imgs/bg.jpg);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: calc(60px * 3);
+  height: calc(83px * 3);
+  border-radius: 12px;
+  margin: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg); /* 默认展示背面 */
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.card-front {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transform: rotateY(180deg); /* 反转正面 */
+}
+
+.card-back {
+  background-image: url(../../assets/imgs/cbg.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(0deg); /* 翻转到正面 */
+}
+
+.card:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.7);
 }
