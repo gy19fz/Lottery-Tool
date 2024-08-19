@@ -15,6 +15,8 @@ async function handleFileOpen() {
     }
 }
 
+console.log(join(__dirname, '../../index.html'));
+
 function createWindow() {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
@@ -27,15 +29,16 @@ function createWindow() {
 
     // and load the index.html of the app.
     if (isDev) {
-        mainWindow.loadURL('http://localhost:3000');// Open the DevTools.
+        mainWindow.loadURL('http://localhost:5173');// Open the DevTools.
         mainWindow.webContents.openDevTools();
     } else {
-        mainWindow.loadFile(join(__dirname, '../../index.html'));
+        mainWindow.loadFile(join(__dirname, '../../../index.html'));
     }
+
     // mainWindow.loadURL( //this doesn't work on macOS in build and preview mode
     //     isDev ?
     //     'http://localhost:3000' :
-    //     join(__dirname, '../../index.html')
+    //     join(__dirname, '../../../index.html')
     // );
 }
 
