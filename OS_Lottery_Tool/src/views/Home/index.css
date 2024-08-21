@@ -4,6 +4,9 @@
   background-image: url(../../assets/imgs/bg.jpg);
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-y: auto;
+  flex-direction: row;
 }
 
 .card {
