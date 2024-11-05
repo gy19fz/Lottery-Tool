@@ -1,7 +1,7 @@
 .home-container {
-  height: 100%;
+  height: calc(100% - 64px);
   width: 100%;
-  background-image: url(../../assets/imgs/bg.jpg);
+  background-image: url(../../assets/imgs/background.png);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

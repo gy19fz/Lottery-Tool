@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import './index.css'
 import { ref, reactive } from "vue";
-import { storeToRefs } from "pinia";
-import { useCounterStore } from "../../store/counter";
 
 
-// defineProps<{ msg: string }>();
-
-const { count } = storeToRefs(useCounterStore());
 const filePath = ref(null);
 const openFile = async () => {
   //@ts-ignore
@@ -57,7 +52,6 @@ const cardFlipHandle = (item) => {
 
 <template>
   <div class="home-container">
-    <el-button>test</el-button>
     <div v-for="(item,index) in userData.data" :key="index" class="card" @click="cardFlipHandle(item)" :class="{ flipped: item.isFlipped }"  >
       <div class="card-inner">
         <div class="card-front">
@@ -68,11 +62,6 @@ const cardFlipHandle = (item) => {
     </div>
     </div>
   </div>
-  <!-- <p>
-    <router-link to="/home" class="routerlink">Go to Home</router-link>
-    <router-link to="/about" class="routerlink">Go to About</router-link>
-  </p>
-  <router-view /> -->
 </template>
 
 <style scoped>
