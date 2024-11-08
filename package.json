@@ -51,7 +51,8 @@
   },
   "dependencies": {
     "element-plus": "^2.3.9",
-    "vue": "^3.2.29"
+    "vue": "^3.2.29",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",

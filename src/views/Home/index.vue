@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { translate } from 'element-plus';
 import './index.css'
 import { ref, reactive } from "vue";
 
@@ -8,6 +9,7 @@ const openFile = async () => {
   //@ts-ignore
   filePath.value = await window.electronAPI.openFile();
 };
+const ifFold = ref(false)
 const userData:any = reactive({
   data:[
     {name:'豹➗', prize:'恭喜豹➗中隐藏龙凤胎一对', isFlipped:true},
@@ -52,7 +54,21 @@ const cardFlipHandle = (item) => {
 
 <template>
   <div class="home-container">
-    <div v-for="(item,index) in userData.data" :key="index" class="card" @click="cardFlipHandle(item)" :class="{ flipped: item.isFlipped }"  >
+    <div v-for="(item,index) in userData.data" 
+      :key="index" 
+      class="card" 
+      @click="cardFlipHandle(item)" 
+      :class="{ flipped: item.isFlipped }"  
+      :style="ifFold ? { 
+        position: 'absolute', 
+        left: '0', 
+        top: '64px', 
+        zIndex: 10 * index /* 使卡片有层次感，防止完全重叠 */ 
+      } : { 
+        position: 'relative', 
+        transform: 'translateY(0)' 
+      }"
+    >
       <div class="card-inner">
         <div class="card-front">
           {{ item.prize }}
