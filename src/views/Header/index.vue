@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import './index.css'
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 import * as XLSX from "xlsx"
+import { useExcelStore } from '../../store/excel'
 
-const xlsxData = ref<any>(null)
+const excelStore = useExcelStore()
+
 // 用于触发文件选择框的 ref
 const fileInputRef = ref<HTMLInputElement | null>(null);
 
@@ -28,10 +30,14 @@ const handleFileChange = (event: Event) => {
 
         // 转换为 JSON 数据
         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-        xlsxData.value = jsonData;
-
-        // 输出解析后的数据
-        console.log(xlsxData.value);
+        const excelData = jsonData.map((item:any,i)=>{
+          return {
+            name:item[0],
+            prize: item[1],
+            isFlipped: true,
+          }
+        }).filter(item => item.name !== '姓名')
+        excelStore.updateData(excelData)
       }
     };
 

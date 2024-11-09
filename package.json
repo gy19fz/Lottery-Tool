@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "element-plus": "^2.3.9",
+    "pinia": "^2.2.6",
     "vue": "^3.2.29",
     "xlsx": "^0.18.5"
   },

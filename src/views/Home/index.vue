@@ -1,51 +1,17 @@
 <script setup lang="ts">
-import { translate } from 'element-plus';
 import './index.css'
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
+import { useExcelStore } from '../../store/excel'
 
-
-const filePath = ref(null);
-const openFile = async () => {
-  //@ts-ignore
-  filePath.value = await window.electronAPI.openFile();
-};
+const excelStore = useExcelStore()
+const xlsxData:any = computed(() => excelStore.data)
+console.log(xlsxData.value)
+// const filePath = ref(null);
+// const openFile = async () => {
+//   //@ts-ignore
+//   filePath.value = await window.electronAPI.openFile();
+// };
 const ifFold = ref(false)
-const userData:any = reactive({
-  data:[
-    {name:'豹➗', prize:'恭喜豹➗中隐藏龙凤胎一对', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'豹➗', prize:'恭喜豹➗中隐藏龙凤胎一对', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-    {name:'M18', prize:'恭喜M18中隐藏3个男孩！', isFlipped:true},
-  ]
-})
 const isFlipped = ref(true)
 const cardFlipHandle = (item) => {
   item.isFlipped = !item.isFlipped
@@ -54,7 +20,7 @@ const cardFlipHandle = (item) => {
 
 <template>
   <div class="home-container">
-    <div v-for="(item,index) in userData.data" 
+    <div v-for="(item,index) in xlsxData" 
       :key="index" 
       class="card" 
       @click="cardFlipHandle(item)" 
